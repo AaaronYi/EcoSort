@@ -1,2 +1,2 @@
 # EcoSort
-Sorts waste by what bin it belongs in
+Identifies waste on camera and sorts it by what bin it belongs in
