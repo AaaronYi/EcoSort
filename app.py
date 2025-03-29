@@ -4,6 +4,7 @@ import torch
 import torchvision.transforms as transforms
 import torchvision.models as models
 import torch.nn.functional as F
+import urllib.request
 
 # Define the mapping of class names to bins
 bin_map = {
@@ -27,7 +28,8 @@ model.eval()
 
 # Load ImageNet class labels
 LABELS_URL = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
-imagenet_classes = [line.strip() for line in torch.hub.load_state_dict_from_url(LABELS_URL, model_dir=".").splitlines()]
+with urllib.request.urlopen(LABELS_URL) as f:
+    imagenet_classes = [line.decode('utf-8').strip() for line in f.readlines()]
 
 # Preprocessing transformation
 transform = transforms.Compose([
